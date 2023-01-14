@@ -1,0 +1,15 @@
+.foot {
+    background-color: black;
+    color: azure;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .foot {
+        width: 100%;
+    }
+}
