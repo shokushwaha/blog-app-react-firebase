@@ -24,6 +24,8 @@ export default function AppProvider({ children }) {
         signInWithPopup(auth, provider).then((result) => {
             localStorage.setItem("isAuth", true);
             setIsAuth(true);
+
+
             window.location.replace("/");
         });
     };

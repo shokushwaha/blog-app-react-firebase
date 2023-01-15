@@ -182,3 +182,15 @@ textarea:focus {
 .btn:where(:hover, :focus) {
     color: #fff;
 }
+
+
+@media screen and (max-width:600px) {
+    .createPost {
+        width: 100vw;
+    }
+
+    .cpContainer {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
