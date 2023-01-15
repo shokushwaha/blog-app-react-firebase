@@ -3,24 +3,17 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 import Home from "./Components/Home";
 import CreatePost from "./Components/CreatePost";
 import Login from "./Components/Login";
-import { useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase";
+import { useContext, useState } from "react";
 import Footer from "./Components/Footer";
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CreateIcon from '@mui/icons-material/Create';
+import { AuthContext } from "./Context/Appcontext";
 function App() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+  const { isAuth, setIsAuth, signUserOut } = useContext(AuthContext);
 
-  const signUserOut = () => {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
-      window.location.pathname = "/login";
-    });
-  };
+
 
   return (
     <Router>

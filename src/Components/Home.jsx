@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import React, { useEffect, useContext } from "react";
+
+import { auth } from "../firebase";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { AuthContext } from "../Context/Appcontext";
 import "../CSS/Home.css"
 
 function Home({ isAuth }) {
 
-    const [postLists, setPostList] = useState([]);
-    const postsCollectionRef = collection(db, "posts");
+    const { postLists, getPosts, deletePost } = useContext(AuthContext);
+
+
+
 
     useEffect(() => {
-        const getPosts = async () => {
-            const data = await getDocs(postsCollectionRef);
-            setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        };
-
         getPosts();
     }, []);
 
-    const deletePost = async (id) => {
-        const postDoc = doc(db, "posts", id);
-        await deleteDoc(postDoc);
-        window.location.reload();
-    };
+
     return (
         <div className="homePage">
             {postLists.map((post) => {

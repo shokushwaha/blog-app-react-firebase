@@ -1,18 +1,9 @@
-import React from "react";
-import { auth, provider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import "../CSS/Login.css"
-function Login({ setIsAuth }) {
-    let navigate = useNavigate();
+import { AuthContext } from "../Context/Appcontext";
+function Login() {
 
-    const signInWithGoogle = () => {
-        signInWithPopup(auth, provider).then((result) => {
-            localStorage.setItem("isAuth", true);
-            setIsAuth(true);
-            navigate("/");
-        });
-    };
+    const { signInWithGoogle } = useContext(AuthContext);
 
     return (
         <div className="loginPage">
