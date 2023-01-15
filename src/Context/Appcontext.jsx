@@ -13,7 +13,7 @@ export default function AppProvider({ children }) {
         signOut(auth).then(() => {
             localStorage.clear();
             setIsAuth(false);
-            window.location.pathname = "/login";
+            window.location.replace("/login");
         });
     };
 
