@@ -7,29 +7,33 @@ import { signInWithPopup } from "firebase/auth";
 export const AuthContext = createContext();
 export default function AppProvider({ children }) {
 
+    //dark mode
+    const [dark, setDark] = useState(true);
+
     // app.js
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const signUserOut = () => {
         signOut(auth).then(() => {
             localStorage.clear();
             setIsAuth(false);
-            window.location.replace("/login");
+            window.location.replace("/");
         });
     };
 
 
 
     // login.js
+
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
             localStorage.setItem("isAuth", true);
             setIsAuth(true);
-
-
+            localStorage.setItem("email", result.user.email);
+            localStorage.setItem("name", result.user.displayName);
             window.location.replace("/");
+
         });
     };
-
 
     // home.js
     const [postLists, setPostList] = useState([]);
@@ -47,19 +51,28 @@ export default function AppProvider({ children }) {
     // create post.js
     const [title, setTitle] = useState("");
     const [postText, setPostText] = useState("");
+    const [imgurl, setImgUrl] = useState("");
 
 
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
     const createPost = async () => {
         await addDoc(postsCollectionRef, {
             title,
             postText,
             author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+            imgurl,
+            createdAt: `${day}-${month}-${year}`
         });
         window.location.replace("/");
     };
 
+
     return (
-        <AuthContext.Provider value={{ isAuth, setIsAuth, signUserOut, signInWithGoogle, postLists, setPostList, postsCollectionRef, getPosts, deletePost, title, setTitle, postText, setPostText, createPost }} >
+        <AuthContext.Provider value={{ dark, setDark, isAuth, setIsAuth, signUserOut, signInWithGoogle, postLists, setPostList, postsCollectionRef, getPosts, deletePost, title, setTitle, postText, setPostText, createPost, imgurl, setImgUrl }} >
             {children}
         </AuthContext.Provider>
     )

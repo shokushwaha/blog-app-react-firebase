@@ -183,6 +183,40 @@ textarea:focus {
     color: #fff;
 }
 
+.imgs {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgs>input {
+
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 4px;
+}
+
+.imgs>button {
+    background-color: black;
+    color: azure;
+    padding: 4px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    margin: 4px auto;
+    margin-bottom: 10px;
+}
+
+.imgs>button:hover {
+    background-color: azure;
+    color: black;
+    cursor: pointer;
+    transform: scale(1.1);
+
+}
 
 @media screen and (max-width:600px) {
     .createPost {
