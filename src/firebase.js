@@ -10,12 +10,12 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
 <<<<<<< HEAD
-    apiKey: "AIzaSyCPjV9x3oUTeIXqCWAKMWKr_4YB868t9LU",
-    authDomain: "blogs-60b63.firebaseapp.com",
-    projectId: "blogs-60b63",
-    storageBucket: "blogs-60b63.appspot.com",
-    messagingSenderId: "184791569044",
-    appId: "1:184791569044:web:f8ea365895a4e65f365a81"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
 =======
     apiKey: "",
     authDomain: "",
