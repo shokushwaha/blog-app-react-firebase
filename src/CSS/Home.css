@@ -112,7 +112,7 @@ svg {
     font-size: 20px;
     padding: 10px;
     text-decoration: wavy;
-    font-family: monospace;
+    font-family: 'Itim', cursive;
 }
 
 .homePage {
@@ -122,6 +122,7 @@ svg {
     background-color: rgb(44, 44, 44);
     display: flex;
     flex-direction: column;
+    font-family: 'Itim', cursive;
 }
 
 
@@ -133,6 +134,7 @@ svg {
 
     margin: 10px auto;
     padding-bottom: 10px;
+    font-family: 'Itim', cursive;
 }
 
 
@@ -144,6 +146,7 @@ svg {
     margin: 0;
     width: 40vw;
     padding: 10px;
+    font-family: 'Itim', cursive;
 }
 
 .ybox {
@@ -158,7 +161,7 @@ img {
 
 .title {
     margin-left: 10px;
-
+    font-family: 'Itim', cursive;
 
 }
 
@@ -168,6 +171,7 @@ img {
     margin-left: 10px;
     font-family: 'Alegreya SC', serif;
     color: black;
+    font-family: 'Itim', cursive;
 
 }
 
@@ -180,6 +184,7 @@ img {
     margin-top: 10px;
     font-family: 'Alegreya SC', serif;
     color: rgb(100, 99, 99);
+    font-family: 'Itim', cursive;
 
 }
 
@@ -188,6 +193,7 @@ img {
     font-size: 10px;
     margin-top: 4px;
     color: rgb(105, 103, 103);
+
 }
 
 .deletePost {

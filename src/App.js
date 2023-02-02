@@ -10,8 +10,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import CreateIcon from '@mui/icons-material/Create';
 import { AuthContext } from "./Context/Appcontext";
+import { motion } from "framer-motion";
 function App() {
-  const { isAuth, setIsAuth, signUserOut, dark, setDark, blur, isBlur } = useContext(AuthContext);
+  const { isAuth, setIsAuth, signUserOut, dark, setDark } = useContext(AuthContext);
   const [name, setName] = useState("  ");
   let x = localStorage.getItem("name");
   useEffect(() => {
@@ -24,43 +25,45 @@ function App() {
   }
 
 
-  const changeNavbarColor = () => {
-    if (window.scrollY >= 80) {
-      isBlur(true);
-    }
-    else {
-      isBlur(false);
-    }
-  };
-  window.addEventListener('scroll', changeNavbarColor);
 
   return (
     <Router>
-      <nav style={{ backgroundColor: dark ? "#17252a" : "azure" }} >
-        <NavLink to="/" className="btns" style={{ color: dark ? "white" : "black" }} >< HomeIcon /> Home </NavLink>
+
+      <motion.div
+        initial={{ y: -1000 }}
+        animate={{ y: 0 }}
+        transition={{
+          type: "tween",
+          duration: "0.4",
+          delay: "0"
+        }}>
+
+        <nav style={{ backgroundColor: dark ? "#17252a" : "azure" }} >
+          <NavLink to="/" className="btns" style={{ color: dark ? "white" : "black" }} >< HomeIcon /> Home </NavLink>
 
 
-        {!isAuth ? (
-          <NavLink to="/login" className="btns" style={{ color: dark ? "white" : "black" }}><LoginIcon /> Login </NavLink>
-        ) : (
+          {!isAuth ? (
+            <NavLink to="/login" className="btns" style={{ color: dark ? "white" : "black" }}><LoginIcon /> Login </NavLink>
+          ) : (
+            <>
+              <NavLink to="/createpost"> <CreateIcon />Create Post </NavLink>
+              <button onClick={signUserOut} className="lgbtn" style={{ backgroundColor: dark ? "azure" : "red", color: dark ? "black" : "azure" }}><PowerSettingsNewIcon /> </button>
+            </>
+          )}
           <>
-            <NavLink to="/createpost"> <CreateIcon />Create Post </NavLink>
-            <button onClick={signUserOut} className="lgbtn" style={{ backgroundColor: dark ? "azure" : "red", color: dark ? "black" : "azure" }}><PowerSettingsNewIcon /> </button>
+            <label className="switch">
+              <input type="checkbox" onChange={handleDark} />
+              <span className="slider"></span>
+            </label>
           </>
-        )}
-        <>
-          <label className="switch">
-            <input type="checkbox" onChange={handleDark} />
-            <span className="slider"></span>
-          </label>
-        </>
-      </nav>
-      {
-        isAuth ?
+        </nav>
+        {
+          isAuth ?
 
-          <div className="greet" style={{ backgroundColor: dark ? "#d6f6f9" : "black", color: dark ? "black" : "azure" }}>
-            Welcome!! {name}
-          </div> : null}
+            <div className="greet" style={{ backgroundColor: dark ? "#d6f6f9" : "#17252a", color: dark ? "black" : "azure", fontFamily: "Itim" }}>
+              Welcome!! {name}
+            </div> : null}
+      </motion.div>
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />

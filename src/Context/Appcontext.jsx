@@ -50,7 +50,12 @@ export default function AppProvider({ children }) {
     const deletePost = async (id) => {
         const postDoc = doc(db, "posts", id);
         await deleteDoc(postDoc);
-        window.location.reload();
+        toast("Deleting blog...!")
+
+        setTimeout(() => {
+
+            window.location.replace("/");
+        }, 2000);
     };
 
     // create post.js

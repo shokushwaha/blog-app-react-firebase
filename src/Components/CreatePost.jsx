@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function CreatePost() {
     const navigate = useNavigate();
-    const { setTitle, setPostText, createPost, isAuth, imgurl, setImgUrl } = useContext(AuthContext);
+    const { setTitle, setPostText, createPost, isAuth, imgurl, setImgUrl, dark } = useContext(AuthContext);
 
     // image uploading 
     const [imageUpload, setImageUpload] = useState(null);
@@ -40,9 +40,9 @@ function CreatePost() {
 
     return (
 
-        <div className="createPost">
+        <div className="createPost" style={{ backgroundColor: dark ? "#17252a" : "azure" }} >
             <ToastContainer autoClose={4000} toastStyle={{ backgroundColor: "azure" }} />
-            <div className="cpContainer">
+            <div className="cpContainer" style={{ backgroundColor: dark ? "#3aafa9" : "cyan" }}>
                 <div className="one">Write A Blog</div>
                 <div className="inputGp">
                     <div className="two"> Title:</div>
@@ -69,7 +69,7 @@ function CreatePost() {
                             setImageUpload(event.target.files[0]);
                         }}
                     />
-                    <button onClick={uploadFile}> Upload Image</button>
+                    <button onClick={uploadFile}   > Upload Image</button>
                 </div>
                 <button className="btn" onClick={createPost}> Post Blog!</button>
             </div>
