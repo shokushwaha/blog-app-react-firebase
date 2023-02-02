@@ -4,11 +4,16 @@ import { signOut } from 'firebase/auth';
 import { auth, db } from "../firebase";
 import { provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
+
+import { ToastContainer, toast } from 'react-toastify';
 export const AuthContext = createContext();
 export default function AppProvider({ children }) {
 
     //dark mode
     const [dark, setDark] = useState(true);
+
+    // blur navigatin bar on scroll
+    const [blur, isBlur] = useState(false);
 
     // app.js
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -67,12 +72,18 @@ export default function AppProvider({ children }) {
             imgurl,
             createdAt: `${day}-${month}-${year}`
         });
-        window.location.replace("/");
+        toast("Congratulations! Blog posted....")
+
+        setTimeout(() => {
+
+            window.location.replace("/");
+        }, 4000);
+
     };
 
 
     return (
-        <AuthContext.Provider value={{ dark, setDark, isAuth, setIsAuth, signUserOut, signInWithGoogle, postLists, setPostList, postsCollectionRef, getPosts, deletePost, title, setTitle, postText, setPostText, createPost, imgurl, setImgUrl }} >
+        <AuthContext.Provider value={{ dark, setDark, isAuth, setIsAuth, signUserOut, signInWithGoogle, postLists, setPostList, postsCollectionRef, getPosts, deletePost, title, setTitle, postText, setPostText, createPost, imgurl, setImgUrl, blur, isBlur }} >
             {children}
         </AuthContext.Provider>
     )

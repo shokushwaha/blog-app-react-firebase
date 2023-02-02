@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CreatePost.css"
 import { AuthContext } from "../Context/Appcontext";
-
-
 import {
     uploadBytes,
     getDownloadURL,
@@ -12,6 +10,9 @@ import { storage } from "../firebase";
 import { ref } from "firebase/storage"
 import { v4 } from "uuid";
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreatePost() {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ function CreatePost() {
             getDownloadURL(snapshot.ref).then((url) => {
                 setImgUrl(url);
                 alert("image uploaded");
+
             });
         });
     };
@@ -37,7 +39,9 @@ function CreatePost() {
     }, []);
 
     return (
+
         <div className="createPost">
+            <ToastContainer autoClose={4000} toastStyle={{ backgroundColor: "azure" }} />
             <div className="cpContainer">
                 <div className="one">Write A Blog</div>
                 <div className="inputGp">

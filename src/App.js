@@ -11,7 +11,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import CreateIcon from '@mui/icons-material/Create';
 import { AuthContext } from "./Context/Appcontext";
 function App() {
-  const { isAuth, setIsAuth, signUserOut, dark, setDark } = useContext(AuthContext);
+  const { isAuth, setIsAuth, signUserOut, dark, setDark, blur, isBlur } = useContext(AuthContext);
   const [name, setName] = useState("  ");
   let x = localStorage.getItem("name");
   useEffect(() => {
@@ -22,6 +22,18 @@ function App() {
     setDark(!dark);
 
   }
+
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      isBlur(true);
+    }
+    else {
+      isBlur(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
+
   return (
     <Router>
       <nav style={{ backgroundColor: dark ? "#17252a" : "azure" }} >
